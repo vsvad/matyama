@@ -11,7 +11,7 @@ API_TOKEN = '1420201172:AAFJv4SyCNvsO-4l7o7lrQ85uRcqoET4KBE'
 logging.basicConfig(level=logging.INFO, filename='debug.log')
 
 # Initialize bot and dispatcher
-bot = Bot(token=API_TOKEN,proxy='localhost')
+bot = Bot(token=API_TOKEN,proxy='http://localhost')
 dp = Dispatcher(bot)
 
 
