@@ -135,7 +135,7 @@ if __name__ == '__main__':
 
         dispatcher=dp,
 
-        webhook_path=WEBHOOK_PATH,
+        webhook_path=WEBHOOK_URL,
 
         on_startup=stu,
 
