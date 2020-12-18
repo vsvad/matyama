@@ -116,12 +116,36 @@ async def echo(message: types.Message):
 
     await message.answer('Если вы хотите связаться с реальным человеком, свяжитесь с 79273364899(Станислав Викторович).\nА если  с ботом, используйте /start .')
 
+async def on_shutdown(dp):
+    logging.warning('Shutting down..')
+
+    # insert code here to run it before shutdown
+
+    # Remove webhook (not acceptable in some cases)
+    await bot.delete_webhook()
+
+    # Close DB connection (if used)
+    await dp.storage.close()
+    await dp.storage.wait_closed()
+
+    logging.warning('Bye!')
+
 
 if __name__ == '__main__':
-    app = get_new_configured_app(dispatcher=dp, path=WEBHOOK_URL_PATH)
+    start_webhook(
 
-    app.on_startup.append(on_startup)
+        dispatcher=dp,
 
-    dp.loop.set_task_factory(context.task_factory)
+        webhook_path=WEBHOOK_PATH,
 
-    web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
+        on_startup=on_startup,
+
+        on_shutdown=on_shutdown,
+
+        skip_updates=True,
+
+        host=WEBHOOK_HOST,
+
+        port=os.getenv('PORT'))
+
+    )
