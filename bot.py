@@ -118,4 +118,10 @@ async def echo(message: types.Message):
 
 
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    app = get_new_configured_app(dispatcher=dp, path=WEBHOOK_URL_PATH)
+
+    app.on_startup.append(on_startup)
+
+    dp.loop.set_task_factory(context.task_factory)
+
+    web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
