@@ -6,6 +6,7 @@ from urllib.parse import urljoin
 from random import choice
 
 from aiogram import Bot, Dispatcher, types
+from aiogram.utils.executor import start_webhook
 
 TOKEN = os.getenv('TOKEN', '')  # Press "Reveal Config Vars" in settings tab on Heroku and set TOKEN variable
 PROJECT_NAME = os.getenv('PROJECT_NAME', 'matyama')  # Set it as you've set TOKEN env var
