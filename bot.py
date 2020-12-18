@@ -128,14 +128,14 @@ async def on_shutdown(dp):
     logging.warning('Bye!')
 
 async def stu():
-   await bot.set_webhook(WEBHOOK_URL)
+   await bot.set_webhook(WEBHOOK_PATH)
 
 if __name__ == '__main__':
     start_webhook(
 
         dispatcher=dp,
 
-        webhook_path=WEBHOOK_URL,
+        webhook_path=WEBHOOK_PATH,
 
         on_startup=stu,
 
