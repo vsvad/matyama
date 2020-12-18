@@ -14,7 +14,7 @@ from aiogram.dispatcher.webhook import get_new_configured_app
 TOKEN = os.getenv('TOKEN', '')  # Press "Reveal Config Vars" in settings tab on Heroku and set TOKEN variable
 PROJECT_NAME = os.getenv('PROJECT_NAME', 'aiogram-example')  # Set it as you've set TOKEN env var
 
-WEBHOOK_HOST = f'https://matyama.herokuapp.com/'  # Enter here your link from Heroku project settings
+WEBHOOK_HOST = f'https://{PROJECT_NAME}.herokuapp.com/'  # Enter here your link from Heroku project settings
 WEBHOOK_URL_PATH = '/webhook/' + TOKEN
 WEBHOOK_URL = urljoin(WEBHOOK_HOST, WEBHOOK_URL_PATH)
 
