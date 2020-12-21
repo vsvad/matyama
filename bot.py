@@ -5,15 +5,7 @@ import os
 from urllib.parse import urljoin
 from random import choice
 
-from aiogram import Bot, Dispatcher, types
-from aiogram.utils.executor import start_webhook
-
-TOKEN = os.getenv('TOKEN', '')  # Press "Reveal Config Vars" in settings tab on Heroku and set TOKEN variable
-PROJECT_NAME = os.getenv('PROJECT_NAME', 'matyama')  # Set it as you've set TOKEN env var
-
-WEBHOOK_HOST = f'https://{PROJECT_NAME}.herokuapp.com/'  # Enter here your link from Heroku project settings
-WEBHOOK_URL_PATH = '/webhook/' + TOKEN
-WEBHOOK_URL = urljoin(WEBHOOK_HOST, WEBHOOK_URL_PATH)
+from aiogram import Bot, Dispatcher, types, executor
 
 import sqlite3
 
@@ -22,10 +14,10 @@ c = conn.cursor()
 API_TOKEN = '1420201172:AAFJv4SyCNvsO-4l7o7lrQ85uRcqoET4KBE'
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, filename='debug.log')
+logging.basicConfig(level=logging.INFO)
 
 # Initialize bot and dispatcher
-bot = Bot(token=API_TOKEN, proxy='http:localhost.com:5000/')
+bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 
@@ -113,38 +105,6 @@ async def echo(message: types.Message):
 
     await message.answer('Если вы хотите связаться с реальным человеком, свяжитесь с 79273364899(Станислав Викторович).\nА если  с ботом, используйте /start .')
 
-async def on_shutdown(dp):
-    logging.warning('Shutting down..')
-
-    # insert code here to run it before shutdown
-
-    # Remove webhook (not acceptable in some cases)
-    await bot.delete_webhook()
-
-    # Close DB connection (if used)
-    await dp.storage.close()
-    await dp.storage.wait_closed()
-
-    logging.warning('Bye!')
-
-async def stu():
-   await bot.set_webhook(WEBHOOK_URL_PATH)
 
 if __name__ == '__main__':
-    start_webhook(
-
-        dispatcher=dp,
-
-        webhook_path=WEBHOOK_URL_PATH,
-
-        on_startup=stu,
-
-        on_shutdown=on_shutdown,
-
-        skip_updates=True,
-
-        host=WEBHOOK_HOST,
-
-        port=os.getenv('PORT')
-
-    )
+    executor.start_polling(dp,skip_updates=True)
