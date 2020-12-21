@@ -1,8 +1,6 @@
 import logging
 from config import *
- 
-import os
-from urllib.parse import urljoin
+
 from random import choice
 
 from aiogram import Bot, Dispatcher, types, executor
