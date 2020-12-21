@@ -1,8 +1,6 @@
 import logging
 from config import *
 
-from random import choice
-
 from aiogram import Bot, Dispatcher, types, executor
 
 import sqlite3
