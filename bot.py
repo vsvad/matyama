@@ -12,12 +12,11 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await types.ChatActions.typing()
     if str(message.chat.id)!='1234509879':
-        await bot.send_message(1234509879,f'Chat ID:{message.chat.id}\nFull name:{message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}')
+        await bot.send_message(1234509879,f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}')
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
         ('Платная продленка(инд.занятия)', 'zan'),
