@@ -3,10 +3,6 @@ from config import *
 
 from aiogram import Bot, Dispatcher, types, executor
 
-import sqlite3
-
-conn = sqlite3.connect('chat.db')
-c = conn.cursor()
 API_TOKEN = '1420201172:AAFJv4SyCNvsO-4l7o7lrQ85uRcqoET4KBE'
 
 # Configure logging
@@ -20,8 +16,7 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await types.ChatActions.typing()
-    c.execute('INSERT INTO chats VALUES(%s);' % message.chat.id)
-    conn.commit()
+    logging.info(str(message.chat.id))
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
         ('Платная продленка(инд.занятия)', 'zan'),
