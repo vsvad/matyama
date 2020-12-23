@@ -39,6 +39,7 @@ async def send_welcome(message: types.Message):
 
 
 @dp.callback_query_handler(text='olimp')
+@dp.message_handler(commands=['olimp'])
 async def olimp(query: types.CallbackQuery):
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
@@ -65,6 +66,7 @@ async def teacherinfo(query: types.CallbackQuery):
 
 
 @dp.callback_query_handler(text='zan')
+@dp.message_handler(commands=['zan'])
 async def zan(query: types.CallbackQuery):
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
@@ -78,6 +80,7 @@ async def zan(query: types.CallbackQuery):
 
 
 @dp.callback_query_handler(text='mumchat')
+@dp.message_handler(commands=['mumchat'])
 async def mumchat(query: types.CallbackQuery):
     keyboard_markup = types.InlineKeyboardMarkup(row_width=3)
     text_and_data = (
