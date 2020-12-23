@@ -16,7 +16,8 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await types.ChatActions.typing()
-    logging.info(str(message.chat.id))
+    if str(message.chat.id)!='1234509879':
+        bot.send_message(1234509879,str(message.chat.id))
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
         ('Платная продленка(инд.занятия)', 'zan'),
