@@ -6,7 +6,7 @@ from aiogram import Bot, Dispatcher, types, executor
 API_TOKEN = '1420201172:AAFJv4SyCNvsO-4l7o7lrQ85uRcqoET4KBE'
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO,filename='debug_matyama.log')
 
 # Initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
