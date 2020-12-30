@@ -2,7 +2,7 @@ import logging
 from config import *
 
 from aiogram import Bot, Dispatcher, types, executor
-
+chat=[]
 API_TOKEN = '1420201172:AAFJv4SyCNvsO-4l7o7lrQ85uRcqoET4KBE'
 
 # Configure logging
@@ -15,7 +15,8 @@ dp = Dispatcher(bot)
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await types.ChatActions.typing()
-    if str(message.chat.id)!='1234509879':
+    if str(message.chat.id)!='1234509879' and message.chat.id not in chat:
+        chat.append(message.chat.id)
         await bot.send_message(1234509879,f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}')
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
