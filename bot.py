@@ -3,7 +3,8 @@ from config import *
 
 from aiogram import Bot, Dispatcher, types, executor
 chat=[]
-API_TOKEN = '1420201172:AAFJv4SyCNvsO-4l7o7lrQ85uRcqoET4KBE'
+API_TOKEN = open('token.txt').read().strip()
+MAIN_CHAT = open('main.txt').read().strip()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO,filename='debug_matyama.log')
@@ -12,12 +13,22 @@ logging.basicConfig(level=logging.INFO,filename='debug_matyama.log')
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
+@dp.message_handler(commands=['index'])
+async def index(msg: types.Message):
+    if str(msg.chat.id) != MAIN_CHAT:
+        return
+    data=[]
+    for i in chat:
+        data+=[int(MAIN_CHAT),f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}']
+        data+=['-----------']
+    await bot.send_message('\n'.join(data))
+
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
     await types.ChatActions.typing()
-    if str(message.chat.id)!='1234509879' and message.chat.id not in chat:
-        chat.append(message.chat.id)
-        await bot.send_message(1234509879,f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}')
+    if str(message.chat.id)!=MAIN_CHAT and message.chat.id not in chat:
+        chat.append(message)
+        await bot.send_message(int(MAIN_CHAT),f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}')
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
     text_and_data = (
         ('Платная продленка(инд.занятия)', 'zan'),
