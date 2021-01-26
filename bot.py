@@ -13,15 +13,14 @@ logging.basicConfig(level=logging.INFO,filename='debug_matyama.log')
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
-@dp.message_handler(commands=['index'])
-async def index(msg: types.Message):
-    if str(msg.chat.id) != MAIN_CHAT:
-        return
-    data=[]
-    for i in chat:
-        data+=[int(MAIN_CHAT),f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}']
-        data+=['-----------']
-    await bot.send_message('\n'.join(data))
+@dp.callback_query_handler(text='index_32767')
+async def index(query: types.CallbackQuery):
+    if str(query.chat.id) == MAIN_CHAT:
+        data=[]
+        for message in chat:
+            data+=[int(MAIN_CHAT),f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}']
+            data+=['-----------']
+        await bot.send_message('\n'.join(data))
 
 @dp.message_handler(commands=['start', 'help'])
 async def send_welcome(message: types.Message):
@@ -44,6 +43,10 @@ async def send_welcome(message: types.Message):
         types.InlineKeyboardButton('WhatsApp чат тех.поддержки',
                                    url='https://chat.whatsapp.com/EeMz7l5JYXY8RgPjbsjELF'),
     )
+    if message.chat.id==MAIN_CHAT:
+        keyboard_markup.row(
+            types.InlineKeyboardButton('Index', callback_data='index_32767')
+        )
     await message.answer(
         'Здравствуйте! Меня зовут Матяма. Я помогу вам выбрать нужную программу для вашего ребенка.\nЧто вас интересует?',
         reply_markup=keyboard_markup)
