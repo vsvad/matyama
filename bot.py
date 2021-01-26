@@ -43,7 +43,7 @@ async def send_welcome(message: types.Message):
         types.InlineKeyboardButton('WhatsApp чат тех.поддержки',
                                    url='https://chat.whatsapp.com/EeMz7l5JYXY8RgPjbsjELF'),
     )
-    if message.chat.id==MAIN_CHAT:
+    if str(message.chat.id)==MAIN_CHAT:
         keyboard_markup.row(
             types.InlineKeyboardButton('Index', callback_data='index_32767')
         )
