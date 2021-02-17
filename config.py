@@ -29,5 +29,5 @@ ZAN='''Индивидуальные занятия - помощь ребенку
 У молодого педагога больше доброго отношения и желания ласково подбодрить ребенка - по сравнению с учителем с большим стажем.
 Записывайтесь к нашим молодым добрым учительницам!'''
 STASLINK='https://forms.yandex.ru/u/5fbe8bf864803b19920f72fd/'
-KATYALINK='https://forms.yandex.ru/u/5fc7a68212691d46e9cad217/'
-NASTYALINK='https://forms.yandex.ru/u/5fc7a579b576c8581a7ad785/'
+NASTYALINK='https://forms.yandex.ru/u/5fc7a68212691d46e9cad217/'
+KATYALINK='https://forms.yandex.ru/u/5fc7a579b576c8581a7ad785/'
