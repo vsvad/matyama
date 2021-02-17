@@ -31,3 +31,4 @@ ZAN='''Индивидуальные занятия - помощь ребенку
 STASLINK='https://forms.yandex.ru/u/5fbe8bf864803b19920f72fd/'
 NASTYALINK='https://forms.yandex.ru/u/5fc7a68212691d46e9cad217/'
 KATYALINK='https://forms.yandex.ru/u/5fc7a579b576c8581a7ad785/'
+NUGUSH="https://forms.yandex.ru/u/602d32e938eaf609ae545e14/"
