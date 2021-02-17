@@ -20,6 +20,11 @@ async def send_welcome(message: types.Message):
         chat.append(message)
         await bot.send_message(int(MAIN_CHAT),f'Chat ID: {message.chat.id}\nFull name: {message.from_user.full_name}\nUsername: {message.from_user.mention}\nUrl: {message.from_user.url}')
     keyboard_markup = types.InlineKeyboardMarkup(row_width=5)
+    keyboard_markup.add(
+        # url buttons have no callback data
+        types.InlineKeyboardButton('Сборы на Нугуше',
+                                   url=NUGUSH),
+    )
     text_and_data = (
         ('Платная продленка(инд.занятия)', 'zan'),
         ('Олимпиадная математика', 'olimp'),
