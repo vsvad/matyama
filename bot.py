@@ -104,7 +104,7 @@ async def echo(message: types.Message):
     # old style:
     # await bot.send_message(message.chat.id, message.text)
 
-    await message.answer('Если вы хотите связаться с реальным человеком, свяжитесь с 79273364899(Станислав Викторович).\nА если  с ботом, используйте /start .')
+    await message.answer('Если вы хотите связаться с реальным человеком, свяжитесь с +79273364899(Станислав Викторович).\nА если  с ботом, используйте /start .')
 
 
 if __name__ == '__main__':
